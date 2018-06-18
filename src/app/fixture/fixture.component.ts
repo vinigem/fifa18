@@ -20,14 +20,14 @@ export class FixtureComponent implements OnInit {
 
   loadFixtures() {
     this.appService.getFixtures().subscribe( data => {
-      this.fixtures = data.rounds;
+      this.fixtures = data;
       this.loadCurrentFixture();
     });
   }
 
   loadTeams() {
     this.appService.getTeams().subscribe( data => {
-      this.teams = data.teams;
+      this.teams = data;
     }); 
   }
 
