@@ -74,7 +74,7 @@ var fixtureModel = mongoose.model('fixtures', fixtureSchema, 'fixtures');
 var teamModel = mongoose.model('teams', teamSchema, 'teams');
 
 app.get("/api/getFixtures",function(req, res) {  
-    fixtureModel.find({}.sort({'_id': -1}), function(err, data) {  
+    fixtureModel.find({}).sort({'_id': 'asc'}).exec(function(err, data) {  
         if(err) {  
             res.send(err);  
         } else {                
@@ -84,7 +84,7 @@ app.get("/api/getFixtures",function(req, res) {
 })
 
 app.get("/api/getTeams",function(req,res) {  
-    teamModel.find({}.sort({'_id': -1}), function(err, data) {  
+    teamModel.find({}).sort({'_id': 'asc'}).exec(function(err, data) {  
         if(err) {  
             res.send(err);  
         } else {                
