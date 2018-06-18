@@ -1,0 +1,35 @@
+<div class="container-fluid text-center" *ngIf="fixtures && teams">
+    <h3> FIFA World Cup 2018</h3>
+    
+    <div class="row form-group">
+        <div class="col-xs-4 col-sm-4">
+            <button class="btn btn-primary" (click)="currentRound = currentRound - 1" [disabled]="currentRound <= 0">Prev</button>
+        </div>
+        
+        <div class="col-xs-4 col-sm-4">
+            <h3> {{ fixtures[currentRound].name }} </h3>
+        </div>
+        
+        <div class="col-xs-4 col-sm-4">
+            <button class="btn btn-primary" (click)="currentRound = currentRound + 1" [disabled]="currentRound >= fixtures.length">Next</button>
+        </div>
+    </div>
+    
+    <div class="match-box">
+        <div class="match-item" *ngFor="let match of fixtures[currentRound].matches">
+            <h4> {{ getISTMatchTime(match.date, match.time) | date: 'hh:mm a':'+0530' }} </h4>
+            
+            <h4>
+                <img class="flag" [src]="getTeamFlag(match.team1.code)" />
+                {{ match.team1.code }} <span class="score" *ngIf="match.score1 != null">: {{ match.score1 }}</span>
+                </h4>
+            <h4> vs </h4>
+            <h4>
+                <img class="flag" [src]="getTeamFlag(match.team2.code)"/>
+                {{ match.team2.code }} <span class="score" *ngIf="match.score2 != null">: {{ match.score2 }}</span>
+            </h4>
+        </div>
+    </div>
+
+    
+</div>

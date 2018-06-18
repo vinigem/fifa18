@@ -1,1 +1,38 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body {
+    padding: 0;
+    margin: 0;
+    background: #9aa5aa;
+}
+
+h1, h2, h3, h4, h5 {
+    font-weight: bold;
+}
+
+.match-box {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    color: #fff;
+}
+
+.match-item {
+    min-width: 300px;
+    height: 250px;
+    background: #505f78;
+    padding: 10px;
+    margin: 10px 5px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+}
+
+.flag {
+    width: 64px;
+    height: 48px;
+    margin: 5px;
+}
+
+.score {
+    color: #ff9191;
+}
