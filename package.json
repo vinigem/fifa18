@@ -4,9 +4,9 @@
   "scripts": {
     "ng": "ng",
     "start": "node server.js",
-    "build": "ng build --prod --environment=prod --output-hashing none",
+    "build": "ng build --prod --output-hashing none",
     "lint": "ng lint",
-    "postinstall": "ng build --prod --environment=prod --output-hashing none"
+    "postinstall": "ng build --prod --output-hashing none"
   },
   "private": true,
   "dependencies": {
