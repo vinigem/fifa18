@@ -3,9 +3,10 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "lint": "ng lint"
+    "start": "node server.js",
+    "build": "ng build --prod --environment=prod --output-hashing none",
+    "lint": "ng lint",
+    "postinstall": "ng build --prod --environment=prod --output-hashing none"
   },
   "private": true,
   "dependencies": {
@@ -19,6 +20,7 @@
     "@angular/router": "^6.0.3",
     "bootstrap": "^3.3.7",
     "core-js": "^2.5.4",
+    "express": "^4.16.3",
     "font-awesome": "^4.7.0",
     "jquery": "^3.3.1",
     "rxjs": "^6.0.0",
