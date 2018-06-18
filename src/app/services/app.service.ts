@@ -8,10 +8,10 @@ export class AppService {
     constructor(private httpClient: HttpClient) { }
 
     getFixtures(): Observable<any> {
-        return this.httpClient.get("./assets/fixtures.json");
+        return this.httpClient.get("/api/getFixtures");
     }
 
     getTeams(): Observable<any> {
-        return this.httpClient.get("./assets/teams.json");
+        return this.httpClient.get("/api/getTeams");
     }
 }
