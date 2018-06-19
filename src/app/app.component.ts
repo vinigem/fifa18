@@ -23,9 +23,9 @@ export class AppComponent {
         username: atob(profile.access_token).split(':')[0],
         password: atob(profile.access_token).split(':')[1]
       }
-      this.authService.login(user).subscribe(role => {
-        if(role) {
-          this.authService.setUserProfile(user, true, role);
+      this.authService.login(user).subscribe(data => {
+        if(data.role) {
+          this.authService.setUserProfile(user, true, data.role);
           this.router.navigate(['fixture']);
         }
       });
