@@ -12,6 +12,7 @@ import { AlertService } from '../alert/alert.service';
 export class SignInComponent implements OnInit {
 
     signInForm: FormGroup;
+    rememberMe: boolean;
 
     constructor(private formBuilder: FormBuilder, private authService: AuthService,
         private alertService: AlertService, private router: Router) { }
@@ -19,7 +20,7 @@ export class SignInComponent implements OnInit {
     ngOnInit() {
         this.signInForm = this.formBuilder.group({
             username: ['', Validators.required],
-            password: ['', Validators.required]
+            password: ['', Validators.required],
         });
     }
 
@@ -30,7 +31,7 @@ export class SignInComponent implements OnInit {
             const user = this.signInForm.value;
             this.authService.login(user).subscribe(status => {
                 if(status) {
-                    this.authService.setUserProfile(user);
+                    this.authService.setUserProfile(user, this.rememberMe);
                     this.router.navigate(['fixture']);
                 } else {
                     this.alertService.addAlert('Invalid username or password', 'error');

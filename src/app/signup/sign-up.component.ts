@@ -34,7 +34,7 @@ export class SignUpComponent implements OnInit {
             this.alertService.addAlert('Invalid form fields', 'error');
         } else {
             const user = this.signUpForm.value;
-
+            user.role = 'USER';
             this.authService.register(user).subscribe(status => {
                 if (status) {
                     this.alertService.addAlert('Sign Up is successful. Proceed to sign in', 'success');

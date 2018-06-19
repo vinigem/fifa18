@@ -11,8 +11,8 @@ export class AuthService {
     constructor(public httpClient : HttpClient) {}
 
     getUsername(): string {
-        if(localStorage.getItem('profile') != null) {
-            const profile = JSON.parse(localStorage.getItem('profile'));
+        if(sessionStorage.getItem('profile') != null) {
+            const profile = JSON.parse(sessionStorage.getItem('profile'));
             return profile.username;
         } else {
             return null;;
@@ -27,17 +27,22 @@ export class AuthService {
         return this.httpClient.post(LOGIN_URL, user);
     }
 
-    setUserProfile(user: any) {
+    setUserProfile(user: any, rememberMe: boolean) {
         const token = btoa(user.username + ':' + user.password);
         const profile = {
             username: user.username,
             access_token: token
         }
-        localStorage.setItem('profile', JSON.stringify(profile));
+        if(rememberMe) {
+            localStorage.setItem('profile', JSON.stringify(profile));
+            sessionStorage.setItem('profile', JSON.stringify(profile));
+        } else {
+            sessionStorage.setItem('profile', JSON.stringify(profile));    
+        }
     }
   
     isLoggedIn(): boolean {
-        return localStorage.getItem('profile') != null;
+        return sessionStorage.getItem('profile') != null;
     }
 
 }
