@@ -29,21 +29,4 @@ const fixtureSchema = new Schema({
     ]  
 }, { versionKey: false });
 
-const teamSchema = new Schema({      
-    id: Number,       
-    name: String,
-    fifaCode: String,
-    flag: String   
-}, { versionKey: false });
-
-const userSchema = new Schema({      
-    id:  Schema.Types.ObjectId,       
-    name: String,
-    mobile: Number,
-    username: String,
-    password: String
-}, { versionKey: false });
-
-exports.Fixture = fixtureSchema;
-exports.Team = teamSchema;
-exports.User = userSchema;
+module.exports = mongoose.model('fixtures', fixtureSchema );

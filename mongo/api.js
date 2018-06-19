@@ -1,7 +1,9 @@
 const express = require('express');
 var router = express.Router();
 const mongoose = require("mongoose");
-const models = require('./models'); 
+const fixtures = require('./fixtures');
+const teams = require('./teams');
+const users = require('./users'); 
 
 const db = mongoose.connect("mongodb://admin:passw0rd@ds163480.mlab.com:63480/fifa18", function(err, response){  
    if(err) {
@@ -11,13 +13,9 @@ const db = mongoose.connect("mongodb://admin:passw0rd@ds163480.mlab.com:63480/fi
     }  
 }); 
 
-var fixtures = mongoose.model('fixtures', model.Fixture);
-var teamModel = mongoose.model('teams', model.Team);
-var userModel = mongoose.model('users', model.User);
-
 /* Requests */
 router.get("/getFixtures", function(req, res) {  
-    fixtureModel.find({}).sort({'_id': 'asc'}).exec(function(err, data) {  
+    fixtures.find({}).sort({'_id': 'asc'}).exec(function(err, data) {  
         if(err) {  
             res.send(err);  
         } else {                
@@ -27,7 +25,7 @@ router.get("/getFixtures", function(req, res) {
 })
 
 router.get("/getTeams", function(req, res) {  
-    teamModel.find({}).sort({'_id': 'asc'}).exec(function(err, data) {  
+    teams.find({}).sort({'_id': 'asc'}).exec(function(err, data) {  
         if(err) {  
             res.send(err);  
         } else {                
@@ -37,7 +35,7 @@ router.get("/getTeams", function(req, res) {
 })
 
 router.post("/register", function(req, res) {
-    var newUser = new userModel(req.body);  
+    var newUser = new users(req.body);  
     newUser.save(function(err) {  
         if(err) {  
             res.send(err);  
@@ -49,7 +47,7 @@ router.post("/register", function(req, res) {
 
 router.post("/login", function(req, res) { 
     var user = req.body;  
-    userModel.find()
+    users.find()
     .where('username').equals(user.username)
     .where('password').equals(user.password)
     .select('name')
