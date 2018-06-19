@@ -1,0 +1,38 @@
+<div class="container-fluid text-center" *ngIf="fixtures && teams">
+    <h3> FIFA World Cup 2018</h3>
+    
+    <div class="row form-group">
+        <div class="col-xs-4 col-sm-4">
+            <button class="btn btn-primary" (click)="currentRound = currentRound - 1" [disabled]="currentRound <= 0">Prev</button>
+        </div>
+        
+        <div class="col-xs-4 col-sm-4">
+            <h3> {{ fixtures[currentRound].name }} </h3>
+        </div>
+        
+        <div class="col-xs-4 col-sm-4">
+            <button class="btn btn-primary" (click)="currentRound = currentRound + 1" [disabled]="currentRound >= fixtures.length">Next</button>
+        </div>
+    </div>
+    
+    <div class="match-box">
+        <div class="match-item" *ngFor="let match of fixtures[currentRound].matches; let idx=index;">
+            <h4> {{ getUTC3Time(match.date, match.time) | date: 'hh:mm a':'+0530' }} </h4>
+            
+            <h4 class="text-left">
+                <img class="flag" [src]="getTeamFlag(match.team1.code)" />
+                {{ match.team1.code }} 
+                <input type="number" class="form-control input-score" [(ngModel)]="match.score1" />
+                </h4>
+            <h4> vs </h4>
+            <h4 class="text-left">
+                <img class="flag" [src]="getTeamFlag(match.team2.code)"/>
+                {{ match.team2.code }} 
+                <input type="number" class="form-control input-score" [(ngModel)]="match.score2" />
+            </h4>
+            <button class="btn btn-primary" (click)="updateScore(fixtures[currentRound], match, idx)"> Update Score </button>
+        </div>
+    </div>
+
+    
+</div>

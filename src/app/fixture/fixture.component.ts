@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+
 import { AppService } from '../services/app.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   templateUrl: './fixture.component.html'
@@ -10,7 +12,7 @@ export class FixtureComponent implements OnInit {
   teams: any;
   currentRound: any;
   
-  constructor(private appService: AppService) { }
+  constructor(private appService: AppService, private authService: AuthService) { }
 
   ngOnInit() {
     this.loadFixtures();
@@ -51,10 +53,9 @@ export class FixtureComponent implements OnInit {
     return teams[0].flag;
   }
 
-  getISTMatchTime(date, time) {
+  getUTC3Time(date, time) {
     const dateTime = new Date(date + 'T' + time + ':00+03:00'); //UTC+3
     return dateTime;
-
   }
   
 }

@@ -57,5 +57,16 @@ router.post("/login", function(req, res) {
     });  
 })
 
+router.post("/updateFixture", function(req, res) { 
+    let fixture = req.body;
+    fixtures.update({_id: fixture._id}, fixture, function(err, data) {
+        if (err) {
+            res.send(err);
+        } else {
+            res.send(data);
+        }
+    });
+})
+
 
 module.exports = router;

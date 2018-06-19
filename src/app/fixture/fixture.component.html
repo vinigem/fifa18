@@ -17,7 +17,7 @@
     
     <div class="match-box">
         <div class="match-item" *ngFor="let match of fixtures[currentRound].matches">
-            <h4> {{ getISTMatchTime(match.date, match.time) | date: 'hh:mm a':'+0530' }} </h4>
+            <h4> {{ getUTC3Time(match.date, match.time) | date: 'hh:mm a':'+0530' }} </h4>
             
             <h4>
                 <img class="flag" [src]="getTeamFlag(match.team1.code)" />

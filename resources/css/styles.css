@@ -18,7 +18,7 @@ h1, h2, h3, h4, h5 {
 }
 
 .match-item {
-    min-width: 300px;
+    min-width: 350px;
     height: 250px;
     background: #505f78;
     padding: 10px;
@@ -35,6 +35,10 @@ h1, h2, h3, h4, h5 {
 
 .score {
     color: #ff9191;
+}
+
+.input-score {
+	width: 75px;
 }
 
 .form-container {
