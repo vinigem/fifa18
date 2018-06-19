@@ -46,15 +46,13 @@ router.post("/register", function(req, res) {
 })
 
 router.post("/login", function(req, res) { 
-    users.find()
-    .where('username').equals(req.body.username)
-    .where('password').equals(req.body.password)
-    .select('name')
+    users.findOne({'username': req.body.username, 'password': req.body.password})
+    .select('role')
     .exec(function(err, data) {  
         if(err) {  
             res.send(err);  
         } else {                
-            res.send(data);  
+            res.send(data.role);  
         }  
     });  
 })

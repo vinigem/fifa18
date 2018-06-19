@@ -29,9 +29,9 @@ export class SignInComponent implements OnInit {
             this.alertService.addAlert('Invalid username or password', 'error');
         } else {
             const user = this.signInForm.value;
-            this.authService.login(user).subscribe(status => {
-                if(status) {
-                    this.authService.setUserProfile(user, this.rememberMe);
+            this.authService.login(user).subscribe(role => {
+                if(role) {
+                    this.authService.setUserProfile(user, this.rememberMe, role);
                     this.router.navigate(['fixture']);
                 } else {
                     this.alertService.addAlert('Invalid username or password', 'error');

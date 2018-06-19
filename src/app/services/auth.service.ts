@@ -10,15 +10,6 @@ export class AuthService {
     
     constructor(public httpClient : HttpClient) {}
 
-    getUsername(): string {
-        if(sessionStorage.getItem('profile') != null) {
-            const profile = JSON.parse(sessionStorage.getItem('profile'));
-            return profile.username;
-        } else {
-            return null;;
-        }
-    }
-
     register(user: any): Observable<any> {
         return this.httpClient.post(REGISTER_URL, user);
     }
@@ -27,11 +18,12 @@ export class AuthService {
         return this.httpClient.post(LOGIN_URL, user);
     }
 
-    setUserProfile(user: any, rememberMe: boolean) {
+    setUserProfile(user: any, rememberMe: boolean, userRole: string) {
         const token = btoa(user.username + ':' + user.password);
         const profile = {
             username: user.username,
-            access_token: token
+            access_token: token,
+            role: userRole
         }
         if(rememberMe) {
             localStorage.setItem('profile', JSON.stringify(profile));
@@ -43,6 +35,24 @@ export class AuthService {
   
     isLoggedIn(): boolean {
         return sessionStorage.getItem('profile') != null;
+    }
+
+    getUsername(): string {
+        if(sessionStorage.getItem('profile') != null) {
+            const profile = JSON.parse(sessionStorage.getItem('profile'));
+            return profile.username;
+        } else {
+            return null;;
+        }
+    }
+
+    getUserRole(): string {
+        if(sessionStorage.getItem('profile') != null) {
+            const profile = JSON.parse(sessionStorage.getItem('profile'));
+            return profile.role;
+        } else {
+            return null;;
+        }
     }
 
 }

@@ -21,9 +21,9 @@ export class AppComponent implements OnInit {
         username: atob(profile.access_token).split(':')[0],
         password: atob(profile.access_token).split(':')[1]
       }
-      this.authService.login(user).subscribe(status => {
-        if(status) {
-          this.authService.setUserProfile(user, true);
+      this.authService.login(user).subscribe(role => {
+        if(role) {
+          this.authService.setUserProfile(user, true, role);
           this.router.navigate(['fixture']);
         }
       });
