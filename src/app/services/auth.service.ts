@@ -20,6 +20,12 @@ export class AuthService {
         return this.httpClient.post(LOGIN_URL, user);
     }
 
+    logout() {
+        localStorage.removeItem('profile');
+        sessionStorage.removeItem('profile');
+        this.loginSubscription.next(false);
+    }
+
     setUserProfile(user: any, rememberMe: boolean, userRole: string) {
         const token = btoa(user.username + ':' + user.password);
         const profile = {

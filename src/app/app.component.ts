@@ -40,8 +40,7 @@ export class AppComponent {
   }
 
   logout() {
-    localStorage.removeItem('profile');
-    sessionStorage.removeItem('profile'); 
+    this.authService.logout(); 
     this.router.navigate(['fixture']);
   }
 }
