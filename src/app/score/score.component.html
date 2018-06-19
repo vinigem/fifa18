@@ -18,21 +18,22 @@
     <div class="match-box">
         <div class="match-item" *ngFor="let match of fixtures[currentRound].matches; let idx=index;">
             <p>
-                <strong class="float-left">{{ match.group }} </strong>
-                <strong class="float-right">{{ getUTC3Time(match.date, match.time) | date: 'dd-MMM-yyyy hh:mm a':'+0530' }}</strong>
+                <strong class="float-left">{{ match.group }}</strong>&nbsp;&nbsp;&nbsp;&nbsp;
+                <strong class="float-right">{{ getUTC3Time(match.date, match.time) | date: 'dd-MMM-yyy':'+0530' }}</strong>&nbsp;&nbsp;&nbsp;&nbsp;
+                <strong class="float-right">{{ getUTC3Time(match.date, match.time) | date: 'hh:mm a':'+0530' }}</strong>
             </p>
             <p><strong>{{ match.stadium.name }}</strong></p>
-            <h4>
+            <h5>
                 <img class="flag" [src]="getTeamFlag(match.team1.code)" />
                 {{ match.team1.code }} 
                 <input type="number" class="form-control input-score" [(ngModel)]="match.score1" />
-            </h4>
-            <h4> vs </h4>
-            <h4>
+            </h5>
+            <h5> vs </h5>
+            <h5>
                 <img class="flag" [src]="getTeamFlag(match.team2.code)"/>
                 {{ match.team2.code }} 
                 <input type="number" class="form-control input-score" [(ngModel)]="match.score2" />
-            </h4>
+            </h5>
             <button class="btn btn-primary" (click)="updateScore(fixtures[currentRound], match, idx)"> Update Score </button>
         </div>
     </div>
