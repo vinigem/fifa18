@@ -1,7 +1,7 @@
 const path = require('path');
 const express = require('express');
 const app = express();
-const mongoose = require("mongoose");
+const api = require("./mongo/api");
     
 app.use(express.static(__dirname + '/dist/fifa18'));
 app.set('port', process.env.PORT || 5000);
