@@ -35,7 +35,11 @@ router.get("/getTeams", function(req, res) {
 })
 
 router.post("/register", function(req, res) {
-    var newUser = new users(req.body);  
+    var newUser = new users();
+    newUser.name = req.body.name;
+    newUser.mobile = req.body.mobile;
+    newUser.username = req.body.username;
+    newUser.password = req.body.password;  
     newUser.save(function(err) {  
         if(err) {  
             res.send(err);  
