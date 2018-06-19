@@ -1,1 +1,42 @@
-<fixture></fixture>
+<div class="wrapper">
+    <!-- Menubar -->
+    <header>
+        <nav class="navbar navbar-custom">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="#" class="navbar-brand">FIFA WC 2018</a>
+                </div>
+                
+                <div id="navbarCollapse" class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="#" routerLink="/fixture">Fixture</a></li>
+                        <li *ngIf="isLoggedIn"><a href="#" routerLink="/bet">Bet</a></li>
+                        <li *ngIf="isLoggedIn"><a href="#" routerLink="/set-score">Set Score</a></li>
+                    </ul>
+                    <div class="text-center" *ngIf="username">
+                        Welcome {{username}}!
+                    </div>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#" routerLink="/signin">Sign In</a></li>
+                        <li *ngIf="isLoggedIn"><a href="#" (click)="logout">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+  
+    <!-- Content -->
+    <div class="content">
+		<router-outlet></router-outlet>
+    </div>
+
+    <alert></alert>
+    <overlay></overlay>
+
+</div>

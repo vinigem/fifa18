@@ -36,3 +36,19 @@ h1, h2, h3, h4, h5 {
 .score {
     color: #ff9191;
 }
+
+.form-container {
+	background: #1d2731;
+	max-width: 500px;
+	margin: 10px auto;
+	border: 1px solid rgba(147, 184, 189, 0.8);
+	border-radius: 5px;
+	padding: 5px 15px;
+    color: #fff;
+}
+
+.form-icon {
+	background-color: #1d2731;
+	color: #fff;
+	border-radius: 5px;
+}

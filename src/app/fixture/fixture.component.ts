@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { AppService } from '../services/app.service';
 
 @Component({
-  selector: 'fixture',
   templateUrl: './fixture.component.html'
 })
 export class FixtureComponent implements OnInit {
