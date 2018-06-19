@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LocationStrategy, HashLocationStrategy} from '@angular/common';
 
 import { routing } from './app.routes';
 
@@ -33,8 +34,9 @@ import { CommonInterceptor } from './interceptors/common.interceptor';
     BrowserModule, HttpClientModule, FormsModule, ReactiveFormsModule, routing
   ],
   providers: [
-    AppService, OverlayService, AlertService, AuthGuard, AuthService,
-    { provide: HTTP_INTERCEPTORS, useClass: CommonInterceptor, multi: true }
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
+    { provide: HTTP_INTERCEPTORS, useClass: CommonInterceptor, multi: true },
+    AppService, OverlayService, AlertService, AuthGuard, AuthService
   ],
   bootstrap: [AppComponent]
 })
