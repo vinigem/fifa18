@@ -14,6 +14,6 @@ export class AuthGuard implements CanActivate {
             this.router.navigate(['signin']);
             return false;
         }
-        return true;
+        return 'ADMIN' == this.authService.getUserRole();
     }
 }
