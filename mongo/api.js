@@ -1,5 +1,5 @@
 const express = require('express');
-var router = express.Router();
+const router = express.Router();
 const mongoose = require("mongoose");
 const fixtures = require('./fixtures');
 const teams = require('./teams');
@@ -46,10 +46,9 @@ router.post("/register", function(req, res) {
 })
 
 router.post("/login", function(req, res) { 
-    var user = req.body;  
     users.find()
-    .where('username').equals(user.username)
-    .where('password').equals(user.password)
+    .where('username').equals(req.body.username)
+    .where('password').equals(req.body.password)
     .select('name')
     .exec(function(err, data) {  
         if(err) {  
