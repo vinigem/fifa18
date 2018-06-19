@@ -5,9 +5,9 @@ const userSchema = new Schema({
     id:  Schema.Types.ObjectId,       
     name: String,
     mobile: Number,
-    username: String,
+    username: { type: String, unique: true },
     password: String,
     role: String
-}, { versionKey: false });
+}, { versionKey: false, strict: true });
 
 module.exports = mongoose.model('users', userSchema );
