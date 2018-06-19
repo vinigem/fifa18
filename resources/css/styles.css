@@ -39,6 +39,7 @@ h1, h2, h3, h4, h5 {
 
 .input-score {
 	width: 75px;
+	display: inline-block;
 }
 
 .form-container {

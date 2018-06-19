@@ -1,7 +1,8 @@
 const mongoose  = require('mongoose');
 const Schema    = mongoose.Schema;
 
-const fixtureSchema = new Schema({      
+const fixtureSchema = new Schema({ 
+    _id: Number,     
     name: String ,
     matches: [
         {
