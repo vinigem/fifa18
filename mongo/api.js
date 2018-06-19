@@ -1,5 +1,5 @@
 const express = require('express');
-const app = express();
+var router = express.Router();
 const mongoose = require("mongoose");
 const models = require('./models'); 
 
@@ -16,7 +16,7 @@ var teamModel = mongoose.model('teams', model.Team);
 var userModel = mongoose.model('users', model.User);
 
 /* Requests */
-app.get("/api/getFixtures", function(req, res) {  
+router.get("/getFixtures", function(req, res) {  
     fixtureModel.find({}).sort({'_id': 'asc'}).exec(function(err, data) {  
         if(err) {  
             res.send(err);  
@@ -26,7 +26,7 @@ app.get("/api/getFixtures", function(req, res) {
     });  
 })
 
-app.get("/api/getTeams", function(req, res) {  
+router.get("/getTeams", function(req, res) {  
     teamModel.find({}).sort({'_id': 'asc'}).exec(function(err, data) {  
         if(err) {  
             res.send(err);  
@@ -36,7 +36,7 @@ app.get("/api/getTeams", function(req, res) {
     });  
 })
 
-app.post("/api/register", function(req, res) {
+router.post("/register", function(req, res) {
     var newUser = new userModel(req.body);  
     newUser.save(function(err) {  
         if(err) {  
@@ -47,7 +47,7 @@ app.post("/api/register", function(req, res) {
     });  
 })
 
-app.post("/api/login", function(req, res) { 
+router.post("/login", function(req, res) { 
     var user = req.body;  
     userModel.find()
     .where('username').equals(user.username)
@@ -61,3 +61,6 @@ app.post("/api/login", function(req, res) {
         }  
     });  
 })
+
+
+module.exports = router;
