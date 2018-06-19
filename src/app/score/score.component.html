@@ -19,13 +19,13 @@
         <div class="match-item" *ngFor="let match of fixtures[currentRound].matches; let idx=index;">
             <h4> {{ getUTC3Time(match.date, match.time) | date: 'hh:mm a':'+0530' }} </h4>
             
-            <h4 class="text-left">
+            <h4>
                 <img class="flag" [src]="getTeamFlag(match.team1.code)" />
                 {{ match.team1.code }} 
                 <input type="number" class="form-control input-score" [(ngModel)]="match.score1" />
                 </h4>
             <h4> vs </h4>
-            <h4 class="text-left">
+            <h4>
                 <img class="flag" [src]="getTeamFlag(match.team2.code)"/>
                 {{ match.team2.code }} 
                 <input type="number" class="form-control input-score" [(ngModel)]="match.score2" />
