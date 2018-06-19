@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable} from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 
 const LOGIN_URL:string = '/api/login';
 const REGISTER_URL:string = '/api/register';
@@ -8,6 +8,8 @@ const REGISTER_URL:string = '/api/register';
 @Injectable()
 export class AuthService {
     
+    loginSubscription = new BehaviorSubject<boolean>(false);
+
     constructor(public httpClient : HttpClient) {}
 
     register(user: any): Observable<any> {
@@ -31,6 +33,8 @@ export class AuthService {
         } else {
             sessionStorage.setItem('profile', JSON.stringify(profile));    
         }
+
+        this.loginSubscription.next(true);
     }
   
     isLoggedIn(): boolean {

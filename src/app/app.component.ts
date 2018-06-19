@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AuthService } from './services/auth.service';
@@ -7,10 +7,12 @@ import { AuthService } from './services/auth.service';
   selector: 'app-root',
   templateUrl: './app.component.html'
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
 
   isLoggedIn: boolean;
   username: string;
+  role: string;
+  loginSubscription: any;
 
   constructor(private authService: AuthService, private router: Router) {
     // Automatic login
@@ -28,11 +30,13 @@ export class AppComponent implements OnInit {
         }
       });
     }
-  }
 
-  ngOnInit() {
-    this.isLoggedIn = this.authService.isLoggedIn();
-    this.username = this.authService.getUsername();
+    this.loginSubscription = this.authService.loginSubscription.subscribe(loggedIn => {
+      this.isLoggedIn = this.authService.isLoggedIn();
+      this.username = this.authService.getUsername();
+      this.role = this.authService.getUserRole();
+    });
+
   }
 
   logout() {

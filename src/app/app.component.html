@@ -17,10 +17,10 @@
                     <ul class="nav navbar-nav">
                         <li><a href="#" routerLink="/fixture">Fixture</a></li>
                         <li *ngIf="isLoggedIn"><a href="#" routerLink="/bet">Bet</a></li>
-                        <li *ngIf="isLoggedIn"><a href="#" routerLink="/set-score">Set Score</a></li>
+                        <li *ngIf="role == 'ADMIN'"><a href="#" routerLink="/set-score">Set Score</a></li>
                     </ul>
                     <div class="text-center" *ngIf="username">
-                        Welcome {{username}}!
+                        Welcome {{ username | uppercase }}!
                     </div>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="#" routerLink="/signin">Sign In</a></li>
