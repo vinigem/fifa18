@@ -98,7 +98,7 @@ export class StandingsComponent implements OnInit {
       }
       
       teamsData.sort((a, b) => {
-        return (a.pts > b.pts) ? -1 : ((b.pts > a.pts) ? 1 : ((a.gs-a.gc) > (b.gs-b.gc) ? 1 : (((b.gs-b.gc) > (a.gs-a.gc)) ? -1 : 0));
+        return (a.pts > b.pts) ? -1 : ((b.pts > a.pts) ? 1 : ((a.gs-a.gc) > (b.gs-b.gc)) ? 1 : (((b.gs-b.gc) > (a.gs-a.gc)) ? -1 : 0));
       });
 
       this.standings[groupName] = teamsData; 
