@@ -1,0 +1,33 @@
+<div class="container-fluid text-center" *ngIf="fixtures && teams">
+    <h3> FIFA World Cup 2018 Standings</h3>
+    
+    <div class="match-box">
+        <div class="match-item" *ngFor="let groupKey of getKeys(standings)">
+            <p><strong>{{ groupKey }}</strong></p>
+            <table class="table table-bordered table-responsive">
+                <tr>
+                    <th>Team</th>
+                    <th>P</th>
+                    <th>W</th>
+                    <th>L</th>
+                    <th>D</th>
+                    <th>GS</th>
+                    <th>GC</th>
+                    <th>Pts</th>
+                </tr>
+                <tr *ngFor="let teamKey of getKeys(standings[groupKey])">
+                    <td>{{ teamKey }}</td>
+                    <td>{{ standings[groupKey][teamKey].p }}</td>
+                    <td>{{ standings[groupKey][teamKey].w }}</td>
+                    <td>{{ standings[groupKey][teamKey].l }}</td>
+                    <td>{{ standings[groupKey][teamKey].d }}</td>
+                    <td>{{ standings[groupKey][teamKey].gs }}</td>
+                    <td>{{ standings[groupKey][teamKey].gc }}</td>
+                    <td>{{ standings[groupKey][teamKey].pts }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    
+</div>

@@ -13,6 +13,7 @@ import { FixtureComponent } from './fixture/fixture.component';
 import { SignInComponent } from './signin/sign-in.component';
 import { SignUpComponent } from './signup/sign-up.component';
 import { ScoreComponent } from './score/score.component';
+import { StandingsComponent } from './standings/standings.component';
 
 import { OverlayComponent } from './overlay/overlay.component';
 import { OverlayService } from './overlay/overlay.service';
@@ -28,7 +29,7 @@ import { CommonInterceptor } from './interceptors/common.interceptor';
 @NgModule({
   declarations: [
     AppComponent, SignInComponent, SignUpComponent, OverlayComponent, AlertComponent,
-    FixtureComponent, ScoreComponent
+    FixtureComponent, ScoreComponent, StandingsComponent
   ],
   imports: [
     BrowserModule, HttpClientModule, FormsModule, ReactiveFormsModule, routing
