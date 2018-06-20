@@ -7,6 +7,7 @@
             <table class="table table-bordered table-responsive">
                 <tr>
                     <th>Team</th>
+                    <th>F</th>
                     <th>P</th>
                     <th>W</th>
                     <th>L</th>
@@ -16,7 +17,8 @@
                     <th>Pts</th>
                 </tr>
                 <tr *ngFor="let team of standings[groupName]">
-                    <td>{{ team.name }}<img class="flag-sm" [src]="getTeamFlag(team.name)" width="32" height="28"/></td>
+                    <td>{{ team.name }}</td>
+                    <td><img class="flag-sm" [src]="getTeamFlag(team.name)"/></td>
                     <td>{{ team.p }}</td>
                     <td>{{ team.w }}</td>
                     <td>{{ team.l }}</td>
