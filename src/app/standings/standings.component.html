@@ -16,7 +16,7 @@
                     <th>Pts</th>
                 </tr>
                 <tr *ngFor="let team of standings[groupName]">
-                    <td>{{ team.name }}<img class="flag" [src]="getTeamFlag(match.team1.code)" width="32" height="28"/></td>
+                    <td>{{ team.name }}<img class="flag-sm" [src]="getTeamFlag(team.name)" width="32" height="28"/></td>
                     <td>{{ team.p }}</td>
                     <td>{{ team.w }}</td>
                     <td>{{ team.l }}</td>
