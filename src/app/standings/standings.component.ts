@@ -84,7 +84,12 @@ export class StandingsComponent implements OnInit {
           this.standings[match.group] = groupData;  
         }
       });
-    });  
+    }); 
+
+    // Sort each group teams on points
+    this.standings.forEach(group => {
+      group.sort(function(a,b) {return (a.pts > b.pts) ? -1 : ((b.pts > a.pts) ? 1 : 0);} );  
+    }); 
   }
 
   getTeamFlag(teamCode: string) {
