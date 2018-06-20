@@ -9,11 +9,13 @@ export class StandingsComponent implements OnInit {
 
   fixtures: any;
   standings: any;
+  teams: any;
   
   constructor(private appService: AppService) { }
 
   ngOnInit() {
     this.loadFixtures();
+    this.loadTeams();
   }
 
   loadFixtures() {
@@ -21,6 +23,12 @@ export class StandingsComponent implements OnInit {
       this.fixtures = data;
       this.loadStandings();
     });
+  }
+
+  loadTeams() {
+    this.appService.getTeams().subscribe( data => {
+      this.teams = data;
+    }); 
   }
  
   loadStandings() {
@@ -136,6 +144,13 @@ export class StandingsComponent implements OnInit {
 
   getKeys(map){
     return Object.keys(map);
+  }
+
+  getTeamFlag(teamName: string) {
+    let teams = this.teams.filter(team => {
+      return team.name == teamName;
+    });
+    return teams[0].flag;
   }
   
 }

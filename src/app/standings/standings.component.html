@@ -1,4 +1,4 @@
-<div class="container-fluid text-center" *ngIf="fixtures">
+<div class="container-fluid text-center" *ngIf="fixtures && teams">
     <h3> FIFA World Cup 2018 Standings</h3>
     
     <div class="match-box">
@@ -16,7 +16,7 @@
                     <th>Pts</th>
                 </tr>
                 <tr *ngFor="let team of standings[groupName]">
-                    <td>{{ team.name }}</td>
+                    <td>{{ team.name }}<img class="flag" [src]="getTeamFlag(match.team1.code)" width="32" height="28"/></td>
                     <td>{{ team.p }}</td>
                     <td>{{ team.w }}</td>
                     <td>{{ team.l }}</td>
