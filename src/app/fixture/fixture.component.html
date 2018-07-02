@@ -15,7 +15,7 @@
         </div>
     </div>
     
-    <div class="match-box">
+    <div class="match-box" *ngIf="currentRound < fixtures.length">
         <div class="match-item" *ngFor="let match of fixtures[currentRound].matches">
             <p>
                 <strong class="float-left">{{ match.group }}</strong>&nbsp;&nbsp;&nbsp;&nbsp;
