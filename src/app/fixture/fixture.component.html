@@ -3,7 +3,7 @@
     
     <div class="row form-group">
         <div class="col-xs-4 col-sm-4">
-            <button class="btn btn-primary" (click)="currentRound = currentRound - 1" [disabled]="currentRound <= 0">Prev</button>
+            <button class="btn btn-primary" (click)="currentRound = currentRound - 1" [disabled]="currentRound == 0">Prev</button>
         </div>
         
         <div class="col-xs-4 col-sm-4">
@@ -11,11 +11,11 @@
         </div>
         
         <div class="col-xs-4 col-sm-4">
-            <button class="btn btn-primary" (click)="currentRound = currentRound + 1" [disabled]="currentRound >= fixtures.length">Next</button>
+            <button class="btn btn-primary" (click)="currentRound = currentRound + 1" [disabled]="currentRound == fixtures.length - 1">Next</button>
         </div>
     </div>
     
-    <div class="match-box" *ngIf="currentRound < fixtures.length">
+    <div class="match-box">
         <div class="match-item" *ngFor="let match of fixtures[currentRound].matches">
             <p>
                 <strong class="float-left">{{ match.group }}</strong>&nbsp;&nbsp;&nbsp;&nbsp;
