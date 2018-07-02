@@ -34,9 +34,8 @@ export class StandingsComponent implements OnInit {
   loadStandings() {
     let standings = [];
     this.fixtures.forEach(fixture => {
-      if(fixture.name.indexOf('Group') != -1) {
-
-        fixture.matches.forEach(match => {
+      fixture.matches.forEach(match => {
+        if(match.group.indexOf('Group') != -1) {
           const matchTime = this.getUTC3Time(match.date, match.time);
           const groupName = match.group;
           const team1Name = match.team1.name;
@@ -85,8 +84,8 @@ export class StandingsComponent implements OnInit {
             groupData[team2Name] = team2Data;
             standings[groupName] = groupData;  
           }
-        });
-      }
+        }
+      });
     }); 
 
     this.sortStandings(standings);
