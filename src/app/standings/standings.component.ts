@@ -34,56 +34,59 @@ export class StandingsComponent implements OnInit {
   loadStandings() {
     let standings = [];
     this.fixtures.forEach(fixture => {
-      fixture.matches.forEach(match => {
-        const matchTime = this.getUTC3Time(match.date, match.time);
-        const groupName = match.group;
-        const team1Name = match.team1.name;
-        const team2Name = match.team2.name;
+      if(fixture.name.indexOf('Group') != -1) {
 
-        let groupData = standings[groupName] ? standings[groupName] : [];
-        let team1Data = groupData[team1Name] ? groupData[team1Name] : {p:0,w:0,l:0,d:0,gs:0,gc:0,pts:0}; 
-        let team2Data = groupData[team2Name] ? groupData[team2Name] : {p:0,w:0,l:0,d:0,gs:0,gc:0,pts:0};
+        fixture.matches.forEach(match => {
+          const matchTime = this.getUTC3Time(match.date, match.time);
+          const groupName = match.group;
+          const team1Name = match.team1.name;
+          const team2Name = match.team2.name;
 
-        if(this.isMatchOver(matchTime) && null != match.score1 && null != match.score2) {
-          // Match Played
-          team1Data.p = team1Data.p + 1;
-          team2Data.p = team2Data.p + 1;
-          
-          if(match.score1 > match.score2) {
-            team1Data.w = team1Data.w + 1; // Team 1 Won
-            team2Data.l = team2Data.l + 1; // Team 2 Lost
-            team1Data.pts = team1Data.pts + 3; // Team 1 Pts increased
-          
-          } else if(match.score1 < match.score2) {
-            team1Data.l = team1Data.l + 1; // Team 1 Lost
-            team2Data.w = team2Data.w + 1;// Team 2 Won
-            team2Data.pts = team2Data.pts + 3;// Team 3 Pts increased
+          let groupData = standings[groupName] ? standings[groupName] : [];
+          let team1Data = groupData[team1Name] ? groupData[team1Name] : {p:0,w:0,l:0,d:0,gs:0,gc:0,pts:0}; 
+          let team2Data = groupData[team2Name] ? groupData[team2Name] : {p:0,w:0,l:0,d:0,gs:0,gc:0,pts:0};
+
+          if(this.isMatchOver(matchTime) && null != match.score1 && null != match.score2) {
+            // Match Played
+            team1Data.p = team1Data.p + 1;
+            team2Data.p = team2Data.p + 1;
             
+            if(match.score1 > match.score2) {
+              team1Data.w = team1Data.w + 1; // Team 1 Won
+              team2Data.l = team2Data.l + 1; // Team 2 Lost
+              team1Data.pts = team1Data.pts + 3; // Team 1 Pts increased
+            
+            } else if(match.score1 < match.score2) {
+              team1Data.l = team1Data.l + 1; // Team 1 Lost
+              team2Data.w = team2Data.w + 1;// Team 2 Won
+              team2Data.pts = team2Data.pts + 3;// Team 3 Pts increased
+              
+            } else {
+              team1Data.d = team1Data.d + 1; // Team 1 Drawn
+              team2Data.d = team2Data.d + 1; // Team 2 Drawn
+              team1Data.pts = team1Data.pts + 1; // Team 1 Pts increased
+              team2Data.pts = team2Data.pts + 1; // Team 2 Pts increased
+            }
+
+            // Goals Scored
+            team1Data.gs = team1Data.gs + match.score1;
+            team2Data.gs = team2Data.gs + match.score2;
+
+            // Goals Conceeded
+            team1Data.gc = team1Data.gc + match.score2;
+            team2Data.gc = team2Data.gc + match.score1;
+
+            groupData[team1Name] = team1Data;
+            groupData[team2Name] = team2Data;
+            standings[groupName] = groupData;
+          
           } else {
-            team1Data.d = team1Data.d + 1; // Team 1 Drawn
-            team2Data.d = team2Data.d + 1; // Team 2 Drawn
-            team1Data.pts = team1Data.pts + 1; // Team 1 Pts increased
-            team2Data.pts = team2Data.pts + 1; // Team 2 Pts increased
+            groupData[team1Name] = team1Data;
+            groupData[team2Name] = team2Data;
+            standings[groupName] = groupData;  
           }
-
-          // Goals Scored
-          team1Data.gs = team1Data.gs + match.score1;
-          team2Data.gs = team2Data.gs + match.score2;
-
-          // Goals Conceeded
-          team1Data.gc = team1Data.gc + match.score2;
-          team2Data.gc = team2Data.gc + match.score1;
-
-          groupData[team1Name] = team1Data;
-          groupData[team2Name] = team2Data;
-          standings[groupName] = groupData;
-        
-        } else {
-          groupData[team1Name] = team1Data;
-          groupData[team2Name] = team2Data;
-          standings[groupName] = groupData;  
-        }
-      });
+        });
+      }
     }); 
 
     this.sortStandings(standings);

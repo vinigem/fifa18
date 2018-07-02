@@ -27,11 +27,13 @@
             <h5>
                 <img class="flag" [src]="getTeamFlag(match.team1.code)" />
                 {{ match.team1.code }} <span class="score" *ngIf="match.score1 != null">: {{ match.score1 }}</span>
+                <span class="score" *ngIf="match.penalty1 != null">({{ match.penalty1 }})</span>
             </h5>
             <h5> vs </h5>
             <h5>
                 <img class="flag" [src]="getTeamFlag(match.team2.code)"/>
                 {{ match.team2.code }} <span class="score" *ngIf="match.score2 != null">: {{ match.score2 }}</span>
+                <span class="score" *ngIf="match.penalty2 != null">({{ match.penalty2 }})</span>
             </h5>
         </div>
     </div>
