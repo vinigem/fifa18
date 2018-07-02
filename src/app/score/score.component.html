@@ -27,12 +27,14 @@
                 <img class="flag" [src]="getTeamFlag(match.team1.code)" />
                 {{ match.team1.code }} 
                 <input type="number" class="form-control input-score" [(ngModel)]="match.score1" />
+                <input type="number" class="form-control input-score" [(ngModel)]="match.penalty1" />
             </h5>
             <h5> vs </h5>
             <h5>
                 <img class="flag" [src]="getTeamFlag(match.team2.code)"/>
                 {{ match.team2.code }} 
                 <input type="number" class="form-control input-score" [(ngModel)]="match.score2" />
+                <input type="number" class="form-control input-score" [(ngModel)]="match.penalty2" />
             </h5>
             <button class="btn btn-primary" (click)="updateScore(fixtures[currentRound], match, idx)"> Update Score </button>
         </div>
