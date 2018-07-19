@@ -44,6 +44,9 @@ export class FixtureComponent implements OnInit {
         });
       }
     });
+     if(this.currentRound == null) {
+      this.currentRound = this.fixtures.length - 1;
+    }
   }
 
   getTeamFlag(teamCode: string) {
