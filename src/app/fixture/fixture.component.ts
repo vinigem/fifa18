@@ -44,7 +44,7 @@ export class FixtureComponent implements OnInit {
         });
       }
     });
-     if(this.currentRound == null) {
+    if(this.currentRound == null) {
       this.currentRound = this.fixtures.length - 1;
     }
   }
